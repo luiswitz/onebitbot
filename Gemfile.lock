@@ -20,7 +20,7 @@ GEM
     factory_girl (4.8.0)
       activesupport (>= 3.0.0)
     ffaker (2.5.0)
-    i18n (0.8.1)
+    i18n (0.8.4)
     minitest (5.10.2)
     mustermann (1.0.0)
     pg (0.20.0)
@@ -91,4 +91,4 @@ DEPENDENCIES
   tux
 
 BUNDLED WITH
-   1.15.0
+   1.15.1
