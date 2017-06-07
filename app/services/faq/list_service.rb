@@ -4,6 +4,7 @@ module FaqModule
       # TODO: identify origin and set company
       @company = Company.last
       @action = action
+      @faq_type = Faq.faq_types[params["faq_type-original"]]
       @query = params["query"]
     end
 
@@ -18,7 +19,7 @@ module FaqModule
           end
         end
       else
-        faqs = @company.faqs
+        faqs = @company.faqs.where(faq_type: @faq_type)
       end
 
       response = "*Perguntas e Respostas* \n\n"

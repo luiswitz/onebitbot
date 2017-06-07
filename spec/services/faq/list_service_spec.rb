@@ -7,17 +7,17 @@ describe FaqModule::ListService do
 
   describe '#call' do
     it "with list command: With zero faqs, return don't find message" do
-      @listService = FaqModule::ListService.new({}, 'list')
+      @listService = FaqModule::ListService.new({'faq_type-original' => ''}, 'list')
 
       response = @listService.call()
       expect(response).to match("Nada encontrado")
     end
 
     it "With two faqs, find questions and answer in response" do
-      @listService = FaqModule::ListService.new({}, 'list')
+      @listService = FaqModule::ListService.new({'faq_type-original' => 'question'}, 'list')
 
-      faq1 = create(:faq, company: @company)
-      faq2 = create(:faq, company: @company)
+      faq1 = create(:faq, faq_type: 'question', company: @company)
+      faq2 = create(:faq, faq_type: 'question', company: @company)
 
       response = @listService.call()
 

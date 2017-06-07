@@ -12,10 +12,10 @@ describe InterpretService do
     end
 
     it "With two faqs, find questions and answer in response" do
-      faq1 = create(:faq, company: @company)
-      faq2 = create(:faq, company: @company)
+      faq1 = create(:faq, faq_type: 'link', company: @company)
+      faq2 = create(:faq, faq_type: 'link', company: @company)
 
-      response = InterpretService.call('list', {})
+      response = InterpretService.call('list', {'faq_type-original' => 'link'})
 
       expect(response).to match(faq1.question)
       expect(response).to match(faq1.answer)
