@@ -8,5 +8,7 @@ class Faq < ActiveRecord::Base
   has_many :hashtags, through: :faq_hashtags
   belongs_to :company
 
+  enum faq_type: [:question, :link]
+
   pg_search_scope :search, :against => [:question, :answer]
 end
