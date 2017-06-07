@@ -5,6 +5,7 @@ module FaqModule
       @company = Company.last
       @question = params["question-original"]
       @answer = params["answer-original"]
+      @faq_type = params["faq_type-original"]
       @hashtags = params["hashtags-original"]
     end
 
@@ -13,9 +14,11 @@ module FaqModule
         return "Hashtag Obrigatória"
       end
 
+      return "Tipo obrigatório" if @faq_type == nil
+
       begin
         Faq.transaction do
-          faq = Faq.create(question: @question, answer: @answer, company: @company)
+          faq = Faq.create(question: @question, answer: @answer, faq_type: @faq_type, company: @company)
           @hashtags.split(/[\s,]+/).each do |hashtag|
             faq.hashtags << Hashtag.create(name: hashtag)
           end
